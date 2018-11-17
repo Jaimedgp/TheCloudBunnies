@@ -1,7 +1,6 @@
 import wget
-from math import sqrt
 import numpy as np
-from scipy.misc import imread, imresize#, imshow
+from scipy.misc import imread, imresize
 import matplotlib.pyplot as plt
 
 
@@ -14,14 +13,12 @@ def getMapLightning():
     for i in range(64, 349):
         Q[i-64] = image[i][112:480]
 
-    maps = Q
-    plt.imshow(maps)
-    plt.show()
+    maps = imresize(Q, [368, 368])
 
     for i in range(len(maps)):
         for j in range(len(maps[0])):
             a,b,c = maps[i][j]
-            maxC = 100
+            maxC = 80
 
             if a == b and b == c:
                 maps[i][j] = 0
