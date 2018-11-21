@@ -15,15 +15,15 @@ def crearEspana(n,m):
     latitud=[]
     longitud=[]
     poblacion=[]
-    with open('docs/lat.txt', 'r') as f:
+    with open('Input/docs/lat.txt', 'r') as f:
         data = f.readlines()
     for line in data:
         latitud.append(float(line))
-    with open('docs/lon.txt', 'r') as f:
+    with open('Input/docs/lon.txt', 'r') as f:
         data = f.readlines()
     for line in data:
         longitud.append(float(line))
-    with open('docs/pob.txt', 'r') as f:
+    with open('Input/docs/pob.txt', 'r') as f:
         data = f.readlines()
     for line in data:
         poblacion.append(int(line))
@@ -38,9 +38,9 @@ def crearEspana(n,m):
     return matrix
 
 def getMapLightning(m):
-    #url='http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/201811162200_r79g.gif'
-    url = 'http://2.bp.blogspot.com/-MViQnuVJCXg/TcZOE0t5yEI/AAAAAAAACYI/igevZeeZwOI/s1600/rayos.gif'
-    image = wget.download(url)
+    url='http://www.aemet.es/imagenes_d/eltiempo/observacion/rayos/201811162200_r79g.gif'
+    #url = 'http://2.bp.blogspot.com/-MViQnuVJCXg/TcZOE0t5yEI/AAAAAAAACYI/igevZeeZwOI/s1600/rayos.gif'
+    image = wget.download(url, "Input/LightingMap.gif")
     image = imread(image)
 
     Q = [ [0 for i in range(0,368)]  for i in range(0, 285)]
@@ -84,5 +84,5 @@ if __name__ == '__main__':
 
     RawCost = P*coste
     colorCost = np.arctan(P/100000)
-    imsave('color.png', colorCost)
-    imsave('cost.png', RawCost)
+    imsave('outPut/color.png', colorCost)
+    imsave('outPut/cost.png', RawCost)
